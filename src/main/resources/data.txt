@@ -1,0 +1,6 @@
+new Book(1, "Foundation Trilogy");
+new Book(2, "The Road");
+new Book(3, "World War Z: An Oral History of the Zombie War");
+new Book(4, "Deep Wheel Orcadia: A Novel");
+new Book(5, "A River Called Time");
+
