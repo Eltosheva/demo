@@ -12,12 +12,14 @@ import java.util.Map;
 @Service
 public class PersistentStorage {
 
-    String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.txt";
+    String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.dat";
     public File savedHashMapsData = new File(PATH);
     public Map<String, Object> map;
 
     @PostConstruct
-    public void loadData(Map<String, Object> map) {
+    public void loadData() {
+        ApplicationEngine applicationEngine = new ApplicationEngine();
+        applicationEngine.testMethod();
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(savedHashMapsData));
             Object readMap = ois.readObject();

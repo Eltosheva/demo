@@ -1,6 +1,7 @@
 package com.library.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -14,6 +15,7 @@ public class ApplicationEngine implements Serializable {
     @Autowired
     private final PersistentStorage persistentStorage = new PersistentStorage();
 
+    @Bean
     public void testMethod() {
         Map<String, Object> persistentMap = new HashMap<>();
         if(persistentMap.isEmpty()) {
@@ -25,7 +27,9 @@ public class ApplicationEngine implements Serializable {
             persistentMap.put("keyNull", new Book(0, "SNull"));
 
         }else{
-            persistentStorage.loadData(persistentMap);
+            persistentStorage.loadData();
         }
+
+        persistentMap.forEach((key, value) -> System.out.println(key + " " + value.toString()));
     }
 }
