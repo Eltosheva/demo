@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class FailSafePersistentStorage implements PersistentStorage {
+public class FailSavePersistentStorage {
 
     private static final String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.dat";
     public File backupDataFile = new File(PATH);
@@ -36,30 +36,6 @@ public class FailSafePersistentStorage implements PersistentStorage {
         } catch (Exception e) {
             System.out.println("Backup creation failed. Reason:" + e.getMessage());
         }
-    }
-
-    @Override
-    public void put(String key, Object value) {
-        map.put(key, value);
-    }
-
-    @Override
-    public Object get(String key) {
-        return map.get(key);
-    }
-
-    @Override
-    public boolean contains(String key) {
-        return map.containsKey(key);
-    }
-
-    @Override
-    public boolean remove(String key) {
-        if (map.containsKey(key)) {
-            map.remove(key);
-            return true;
-        }
-        return false;
     }
 }
 

@@ -8,10 +8,10 @@ import java.util.Map;
 
 @Component
 public class ApplicationEngine {
-    private final FailSafePersistentStorage persistentStorage;
+    private final FailSavePersistentStorage persistentStorage;
 
     @Autowired
-    public ApplicationEngine(FailSafePersistentStorage persistentStorage) {
+    public ApplicationEngine(FailSavePersistentStorage persistentStorage) {
         this.persistentStorage = persistentStorage;
     }
 
