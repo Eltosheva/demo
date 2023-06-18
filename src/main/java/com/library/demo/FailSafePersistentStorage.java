@@ -11,16 +11,16 @@ import java.util.Map;
 @Component
 public class FailSafePersistentStorage implements PersistentStorage {
 
-    private static final String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.txt";
+    private static final String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.dat";
     public File backupDataFile = new File(PATH);
-    public Map<String, Object> map;
+    public Map<String, Object> map = new HashMap<>();
 
     @PostConstruct
     public void loadData() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(backupDataFile))) {
-            Object readMap = ois.readObject();
-            if (readMap instanceof HashMap) {
-                map.putAll((HashMap) readMap);
+            Map<String, Object> readMap = (HashMap) ois.readObject();
+            if (readMap != null) {
+                map.putAll(readMap);
             }
             System.out.println("Backup data has been loaded successfully");
         } catch (Exception e) {
@@ -36,10 +36,6 @@ public class FailSafePersistentStorage implements PersistentStorage {
         } catch (Exception e) {
             System.out.println("Backup creation failed. Reason:" + e.getMessage());
         }
-    }
-
-    public void FailSafePersistentStorage() {
-        map = new HashMap<>();
     }
 
     @Override

@@ -16,11 +16,10 @@ public class ApplicationEngine {
     }
 
     public void run() {
-        Map<String, Object> filledData = new HashMap<>();
-        if (persistentStorage == null) {
-            filledData = fillDumpDate();
+        if (persistentStorage.map == null) {
+            persistentStorage.map = fillDumpDate();
         }
-        filledData.forEach((key, value) -> System.out.println(key + " " + value.toString()));
+        persistentStorage.map.forEach((key, value) -> System.out.println(key + " " + value.toString()));
     }
 
     public Map<String, Object> fillDumpDate() {

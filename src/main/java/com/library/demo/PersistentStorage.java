@@ -1,5 +1,7 @@
 package com.library.demo;
 
+import java.util.Map;
+
 public interface PersistentStorage {
     public void put(String key, Object value);
 
