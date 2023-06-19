@@ -9,6 +9,7 @@ import java.util.Map;
 @Component
 public class ApplicationEngine {
     private final FileSavePersistentStorage persistentStorage;
+    private final MyHashMap<String, Object> myHashMap = new MyHashMap<>();
 
     @Autowired
     public ApplicationEngine(FileSavePersistentStorage persistentStorage) {
@@ -18,6 +19,8 @@ public class ApplicationEngine {
     public void run() {
         persistentStorage.setMap(fillDumpDate());
         persistentStorage.getMap().forEach((key, value) -> System.out.println(key + " " + value.toString()));
+        fillDumpDate().forEach(myHashMap::put);
+        myHashMap.display();
     }
 
     public Map<String, Object> fillDumpDate() {

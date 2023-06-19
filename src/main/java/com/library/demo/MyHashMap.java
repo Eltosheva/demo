@@ -1,5 +1,8 @@
 package com.library.demo;
 
+import java.util.Map;
+
+import static java.util.Objects.requireNonNull;
 
 public class MyHashMap<K, V> implements PersistentStorage<K, V> {
     public MyHashMap(Entry<K, V>[] table, int capacity) {
@@ -7,7 +10,7 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
         this.capacity = capacity;
     }
 
-    private static int DEFAULT_CAPACITY = 6;
+    private static int DEFAULT_CAPACITY = 16;
 
     private Entry<K, V>[] table;
     private int capacity;
@@ -18,6 +21,7 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
 
     MyHashMap(int capacity) {
         this.table = new Entry[capacity];
+        this.capacity=capacity;
     }
 
     static class Entry<K, V> {
@@ -89,13 +93,25 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
 
     @Override
     public boolean contains(K key) {
+
         return false;
     }
 
     @Override
     public boolean remove(K key) {
-
         return false;
+    }
+
+    public void display() {
+        for (int i = 0; i < capacity; i++) {
+            if (table[i] != null) {
+                Entry<K, V> entry = table[i];
+                while (entry != null) {
+                    System.out.print("{" + entry.key + "=" + entry.value + "}" + " ");
+                    entry = entry.next;
+                }
+            }
+        }
     }
 
     private int indexFor(Object key) {
