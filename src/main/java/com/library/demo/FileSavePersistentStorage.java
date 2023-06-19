@@ -2,6 +2,8 @@ package com.library.demo;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -9,11 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class FailSavePersistentStorage {
+@Setter
+@Getter
+public class FileSavePersistentStorage {
 
     private static final String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.dat";
-    public File backupDataFile = new File(PATH);
-    public Map<String, Object> map = new HashMap<>();
+    private final File backupDataFile = new File(PATH);
+    private Map<String, Object> map = new HashMap<>();
 
     @PostConstruct
     public void loadData() {

@@ -1,31 +1,28 @@
 package com.library.demo;
 
-import org.springframework.stereotype.Component;
+public class LibraryPersistentStorage implements PersistentStorage<String, Object> {
 
-@Component
-public class LibraryPersistentStorage implements PersistentStorage {
-
-    FailSavePersistentStorage failSavePersistentStorage;
+    FileSavePersistentStorage fileSavePersistentStorage;
 
     @Override
     public void put(String key, Object value) {
-        failSavePersistentStorage.map.put(key, value);
+        fileSavePersistentStorage.getMap().put(key, value);
     }
 
     @Override
     public Object get(String key) {
-        return failSavePersistentStorage.map.get(key);
+        return fileSavePersistentStorage.getMap().get(key);
     }
 
     @Override
     public boolean contains(String key) {
-        return failSavePersistentStorage.map.containsKey(key);
+        return fileSavePersistentStorage.getMap().containsKey(key);
     }
 
     @Override
     public boolean remove(String key) {
-        if (failSavePersistentStorage.map.containsKey(key)) {
-            failSavePersistentStorage.map.remove(key);
+        if (fileSavePersistentStorage.getMap().containsKey(key)) {
+            fileSavePersistentStorage.getMap().remove(key);
             return true;
         }
         return false;

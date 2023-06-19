@@ -1,13 +1,11 @@
 package com.library.demo;
 
-import java.util.Map;
+public interface PersistentStorage<K, V> {
+    void put(K key, V value);
 
-public interface PersistentStorage {
-    public void put(String key, Object value);
+    V get(K key);
 
-    public Object get(String key);
+    boolean contains(K key);
 
-    public boolean contains(String key);
-
-    public boolean remove(String key);
+    boolean remove(K key);
 }

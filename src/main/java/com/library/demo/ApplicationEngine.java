@@ -8,18 +8,16 @@ import java.util.Map;
 
 @Component
 public class ApplicationEngine {
-    private final FailSavePersistentStorage persistentStorage;
+    private final FileSavePersistentStorage persistentStorage;
 
     @Autowired
-    public ApplicationEngine(FailSavePersistentStorage persistentStorage) {
+    public ApplicationEngine(FileSavePersistentStorage persistentStorage) {
         this.persistentStorage = persistentStorage;
     }
 
     public void run() {
-        if (persistentStorage.map == null) {
-            persistentStorage.map = fillDumpDate();
-        }
-        persistentStorage.map.forEach((key, value) -> System.out.println(key + " " + value.toString()));
+        persistentStorage.setMap(fillDumpDate());
+        persistentStorage.getMap().forEach((key, value) -> System.out.println(key + " " + value.toString()));
     }
 
     public Map<String, Object> fillDumpDate() {
