@@ -8,19 +8,23 @@ import java.util.Map;
 
 @Component
 public class ApplicationEngine {
-    private final FileSavePersistentStorage persistentStorage;
-    private final MyHashMap<String, Object> myHashMap = new MyHashMap<>();
+    private final LibraryPersistentStorage libraryPersistentStorage;
+    private final CustomPersistentStorage customPersistentStorage;
 
     @Autowired
-    public ApplicationEngine(FileSavePersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+    public ApplicationEngine(LibraryPersistentStorage persistentStorage, CustomPersistentStorage customPersistentStorage) {
+        this.libraryPersistentStorage = persistentStorage;
+        this.customPersistentStorage = customPersistentStorage;
     }
 
     public void run() {
-        persistentStorage.setMap(fillDumpDate());
-        persistentStorage.getMap().forEach((key, value) -> System.out.println(key + " " + value.toString()));
-        fillDumpDate().forEach(myHashMap::put);
-        myHashMap.display();
+        if (libraryPersistentStorage.isEmpty()) {
+            fillDumpDate().forEach(libraryPersistentStorage::put);
+        }
+        libraryPersistentStorage.status();
+        if (customPersistentStorage.isEmpty()) {
+            fillDumpDate().forEach(customPersistentStorage::put);
+        }
     }
 
     public Map<String, Object> fillDumpDate() {

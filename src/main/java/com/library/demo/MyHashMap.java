@@ -1,10 +1,6 @@
 package com.library.demo;
 
-import java.util.Map;
-
-import static java.util.Objects.requireNonNull;
-
-public class MyHashMap<K, V> implements PersistentStorage<K, V> {
+public class MyHashMap<K, V> {
     public MyHashMap(Entry<K, V>[] table, int capacity) {
         this.table = table;
         this.capacity = capacity;
@@ -21,7 +17,7 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
 
     MyHashMap(int capacity) {
         this.table = new Entry[capacity];
-        this.capacity=capacity;
+        this.capacity = capacity;
     }
 
     static class Entry<K, V> {
@@ -41,7 +37,6 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
         }
     }
 
-    @Override
     public void put(K key, V value) {
         if (key == null) {
             return;
@@ -69,7 +64,6 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
         }
     }
 
-    @Override
     public V get(K key) {
         if (key == null) {
             return null;
@@ -91,13 +85,11 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
         return null;
     }
 
-    @Override
     public boolean contains(K key) {
 
         return false;
     }
 
-    @Override
     public boolean remove(K key) {
         return false;
     }
@@ -120,5 +112,9 @@ public class MyHashMap<K, V> implements PersistentStorage<K, V> {
 
     private int hash(K key) {
         return Math.abs(key.hashCode()) % capacity;
+    }
+
+    public boolean isEmpty() {
+        return true;
     }
 }

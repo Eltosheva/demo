@@ -8,4 +8,6 @@ public interface PersistentStorage<K, V> {
     boolean contains(K key);
 
     boolean remove(K key);
+
+    boolean isEmpty();
 }
