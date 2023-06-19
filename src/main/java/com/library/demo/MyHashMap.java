@@ -1,6 +1,8 @@
 package com.library.demo;
 
-public class MyHashMap<K, V> {
+import java.io.Serializable;
+
+public class MyHashMap<K, V> implements Serializable {
     public MyHashMap(Entry<K, V>[] table, int capacity) {
         this.table = table;
         this.capacity = capacity;
@@ -20,7 +22,7 @@ public class MyHashMap<K, V> {
         this.capacity = capacity;
     }
 
-    static class Entry<K, V> {
+    static class Entry<K, V> implements Serializable{
         K key;
         V value;
         Entry<K, V> next;
