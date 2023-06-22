@@ -3,7 +3,7 @@ package com.persistentStorage.demo;
 import java.io.Serializable;
 
 public class CustomHashMap<K,V>  implements Serializable {
-    private Entry[] buckets;
+    private Entry<K,V>[] buckets;
     private int capacity;
 
     public CustomHashMap(int capacity) {
@@ -11,7 +11,7 @@ public class CustomHashMap<K,V>  implements Serializable {
         this.buckets = new Entry[capacity];
     }
 
-    public boolean contains(String key) {
+    public boolean contains(K key) {
         int bucketIndex = getBucketIndex(key);
         Entry<K,V> entry = buckets[bucketIndex];
 
@@ -25,7 +25,7 @@ public class CustomHashMap<K,V>  implements Serializable {
         return false;
     }
 
-    public boolean remove(String key) {
+    public boolean remove(K key) {
         int bucketIndex = getBucketIndex(key);
         Entry<K,V> entry = buckets[bucketIndex];
         Entry<K,V> prev = null;
@@ -46,7 +46,7 @@ public class CustomHashMap<K,V>  implements Serializable {
         return false;
     }
 
-    public void put(String key, Object value) {
+    public void put(K key, V value) {
         int bucketIndex = getBucketIndex(key);
 
         Entry<K,V> entry = new Entry<K,V>(key, value);
@@ -66,7 +66,7 @@ public class CustomHashMap<K,V>  implements Serializable {
         }
     }
 
-    public Object get(String key) {
+    public Object get(K key) {
         int bucketIndex = getBucketIndex(key);
         Entry<K,V> entry = buckets[bucketIndex];
 
@@ -80,30 +80,30 @@ public class CustomHashMap<K,V>  implements Serializable {
         return null;
     }
 
-    private int getBucketIndex(String key) {
+    private int getBucketIndex(K key) {
         return Math.abs(key.hashCode() % capacity);
     }
 
     private static class Entry<K,V> implements Serializable{
-        private String key;
-        private Object value;
+        private K key;
+        private V value;
         private Entry<K,V> next;
 
-        public Entry(String key, Object value) {
+        public Entry(K key, V value) {
             this.key = key;
             this.value = value;
             this.next = null;
         }
 
-        public String getKey() {
+        public K getKey() {
             return key;
         }
 
-        public Object getValue() {
+        public V getValue() {
             return value;
         }
 
-        public void setValue(Object value) {
+        public void setValue(V value) {
             this.value = value;
         }
 
