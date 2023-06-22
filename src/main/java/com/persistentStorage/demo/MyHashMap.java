@@ -1,4 +1,4 @@
-package com.library.demo;
+package com.persistentStorage.demo;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.library.demo;
+package com.persistentStorage.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.library.demo;
+package com.persistentStorage.demo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

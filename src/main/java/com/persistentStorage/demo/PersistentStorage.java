@@ -1,4 +1,4 @@
-package com.library.demo;
+package com.persistentStorage.demo;
 
 public interface PersistentStorage<K, V> {
     void put(K key, V value);

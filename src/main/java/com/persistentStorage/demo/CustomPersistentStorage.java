@@ -1,4 +1,4 @@
-package com.library.demo;
+package com.persistentStorage.demo;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -13,7 +13,7 @@ public class CustomPersistentStorage implements PersistentStorage<String, Object
 
     private static final String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.dat";
     private final File backupDataFile = new File(PATH);
-    private CustomHashMap<String, Object> map = new CustomHashMap<>(5);
+    private CustomHashMap<String, Object> map = new CustomHashMap<>(1);
 
 
     @PostConstruct
