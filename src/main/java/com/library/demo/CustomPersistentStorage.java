@@ -13,7 +13,7 @@ public class CustomPersistentStorage implements PersistentStorage<String, Object
 
     private static final String PATH = "C:\\Users\\User\\IdeaProjects\\demo\\src\\main\\resources\\data.dat";
     private final File backupDataFile = new File(PATH);
-    private MyHashMap<String, Object> map = new MyHashMap<>();
+    private CustomHashMap<String, Object> map = new CustomHashMap<>(5);
 
 
     @PostConstruct
@@ -51,17 +51,17 @@ public class CustomPersistentStorage implements PersistentStorage<String, Object
 
     @Override
     public boolean contains(String key) {
-        return false;
+        return map.contains(key);
     }
 
     @Override
     public boolean remove(String key) {
-        return false;
+        return map.remove(key);
     }
 
     @Override
     public boolean isEmpty() {
-        return true;
+        return map == null;
     }
 }
 
