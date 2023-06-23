@@ -2,8 +2,8 @@ package com.persistentStorage.demo;
 
 import java.io.Serializable;
 
-public class CustomHashMap<K,V>  implements Serializable {
-    private Entry<K,V>[] buckets;
+public class CustomHashMap<K, V> implements Serializable {
+    private Entry<K, V>[] buckets;
     private int capacity;
 
     public CustomHashMap(int capacity) {
@@ -13,7 +13,7 @@ public class CustomHashMap<K,V>  implements Serializable {
 
     public boolean contains(K key) {
         int bucketIndex = getBucketIndex(key);
-        Entry<K,V> entry = buckets[bucketIndex];
+        Entry<K, V> entry = buckets[bucketIndex];
 
         while (entry != null) {
             if (entry.getKey().equals(key)) {
@@ -27,8 +27,8 @@ public class CustomHashMap<K,V>  implements Serializable {
 
     public boolean remove(K key) {
         int bucketIndex = getBucketIndex(key);
-        Entry<K,V> entry = buckets[bucketIndex];
-        Entry<K,V> prev = null;
+        Entry<K, V> entry = buckets[bucketIndex];
+        Entry<K, V> prev = null;
 
         while (entry != null) {
             if (entry.getKey().equals(key)) {
@@ -49,12 +49,12 @@ public class CustomHashMap<K,V>  implements Serializable {
     public void put(K key, V value) {
         int bucketIndex = getBucketIndex(key);
 
-        Entry<K,V> entry = new Entry<K,V>(key, value);
+        Entry<K, V> entry = new Entry<>(key, value);
 
         if (buckets[bucketIndex] == null) {
             buckets[bucketIndex] = entry;
         } else {
-            Entry<K,V> current = buckets[bucketIndex];
+            Entry<K, V> current = buckets[bucketIndex];
             while (current.getNext() != null) {
                 if (current.getKey().equals(key)) {
                     current.setValue(value);
@@ -68,7 +68,7 @@ public class CustomHashMap<K,V>  implements Serializable {
 
     public Object get(K key) {
         int bucketIndex = getBucketIndex(key);
-        Entry<K,V> entry = buckets[bucketIndex];
+        Entry<K, V> entry = buckets[bucketIndex];
 
         while (entry != null) {
             if (entry.getKey().equals(key)) {
@@ -84,10 +84,10 @@ public class CustomHashMap<K,V>  implements Serializable {
         return Math.abs(key.hashCode() % capacity);
     }
 
-    private static class Entry<K,V> implements Serializable{
+    private static class Entry<K, V> implements Serializable {
         private K key;
         private V value;
-        private Entry<K,V> next;
+        private Entry<K, V> next;
 
         public Entry(K key, V value) {
             this.key = key;
@@ -107,11 +107,11 @@ public class CustomHashMap<K,V>  implements Serializable {
             this.value = value;
         }
 
-        public Entry<K,V> getNext() {
+        public Entry<K, V> getNext() {
             return next;
         }
 
-        public void setNext(Entry<K,V> next) {
+        public void setNext(Entry<K, V> next) {
             this.next = next;
         }
     }
